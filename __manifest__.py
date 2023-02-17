@@ -3,7 +3,7 @@
 # contains the full copyright notices and license terms.
 {
     'name': 'Delivery Common',
-    'version': '14.0.1',
+    'version': '14.0.2',
     'author': 'Adiczion SARL',
     'category': 'Adiczion',
     'license': 'AGPL-3',
