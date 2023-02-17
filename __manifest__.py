@@ -29,7 +29,7 @@ which depend on him, mainly:
         # 'security/objects_security.xml',
         # 'security/ir.model.access.csv',
         # 'wizard/your_wizard_name.xml',
-        # 'data/data_for_your_module.xml',
+        'data/ir_cron.xml',
         'views/stock_quant_views.xml',
         'views/delivery_views.xml',
     ],

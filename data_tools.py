@@ -88,8 +88,8 @@ class Item(object):
         keys = kwargs.keys()
         not_defined = set(keys) - set(self._defaults.keys())
         if not_defined:
-            raise AttributeError(_("Some attribut doesn't exist: {}!").format(
-                ",".join(not_defined)))
+            raise AttributeError(_("Some attributes doesn't exist: {}!")
+                .format(",".join(not_defined)))
         if 'name' not in kwargs.keys():
             raise AttributeError(_("An attribut 'name' is required!"))
         if len(set(['source', 'eval']) - set(kwargs.keys())) != 1:

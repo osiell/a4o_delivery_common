@@ -3,14 +3,20 @@
 The COPYRIGHT and LICENSE files at the top level of this repository
 contains the full copyright notices and license terms. -->
 <odoo>
-    <record id="view_delivery_carrier_form_relaypoint" model="ir.ui.view">
-        <field name="name">delivery.carrier.form.relaypoint</field>
+    <record id="view_delivery_carrier_form_delivery_common" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.delivery_common</field>
         <field name="model">delivery.carrier</field>
         <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='company_id']" position="after">
-                <field name="sender_id" 
-                    attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'chronopost', 'mydelivengo'])]}"/>
+            <xpath expr="//group[@name='delivery_details']" position="after">
+                <group string="Sender" name="sender">
+                    <field name="sender_id"
+                        attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'chronopost', 'mydelivengo'])]}"/>
+                </group>
+                <group string="Customs" name="customs">
+                    <field name="country_origin_id"
+                        attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'mydelivengo'])], 'required': [('delivery_type', '=', ['colissimo', 'mydelivengo'])]}"/>
+                </group>
             </xpath>
         </field>
     </record>
