@@ -21,8 +21,8 @@ Does nothing on its own, addition of fields and libraries for use by modules
 which depend on him, mainly:
 
    * a4o_delivery_colissimo
-   * a4o_delivery_maydelivengo
-   * a4to_delivery_chronopost
+   * a4o_delivery_mydelivengo
+   * a4o_delivery_chronopost
 
     """,
     'data': [

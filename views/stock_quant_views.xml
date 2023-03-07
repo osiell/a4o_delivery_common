@@ -10,7 +10,7 @@ contains the full copyright notices and license terms. -->
         <field name="arch" type="xml">
             <xpath expr="//group[@id='stock.package_location_group']" position="after">
                 <group id="stock.package_carrier_details">
-                    <field name="date_status_check"/>
+                    <field name="date_status_check" attrs="{'invisible': [('date_status_check', '=', False)]}"/>
                 </group>
             </xpath>
         </field>

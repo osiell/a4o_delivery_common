@@ -13,9 +13,8 @@ contains the full copyright notices and license terms. -->
                     <field name="sender_id"
                         attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'chronopost', 'mydelivengo'])]}"/>
                 </group>
-                <group string="Customs" name="customs">
-                    <field name="country_origin_id"
-                        attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'mydelivengo'])], 'required': [('delivery_type', '=', ['colissimo', 'mydelivengo'])]}"/>
+                <group string="Customs" name="customs" attrs="{'invisible': [('delivery_type', 'not in', ['colissimo', 'mydelivengo'])]}">
+                    <field name="country_origin_id"/>
                 </group>
             </xpath>
         </field>
