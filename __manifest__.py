@@ -17,17 +17,18 @@
 Delivery Common
 ===============
 
-Does nothing on its own, addition of fields and libraries for use by modules
-which depend on him, mainly:
+Does nothing by itself. Adds the fields and libraries usable by the modules 
+that depend on it, currently:
 
-   * a4o_delivery_colissimo
-   * a4o_delivery_mydelivengo
-   * a4o_delivery_chronopost
+     * a4o_delivery_colissimo
+     * a4o_delivery_mydelivengo
+     * a4o_delivery_chronopost
 
-He adds :
- 
-   * Customs information support for Colissimo and Delivengo delivery methods.
-   * The management of availability periods for our delivery methods.
+This includes:
+
+     * Support for customs information for Colissimo and Delivengo delivery 
+       methods.
+     * The management of the availability periods of our delivery methods.
     """,
     'data': [
         # 'security/objects_security.xml',

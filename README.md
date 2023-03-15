@@ -1,6 +1,17 @@
 # a4o_delivery_common
 
-[Add the description of your module here].
+Does nothing by itself. Adds the fields and libraries usable by the modules 
+that depend on it, currently:
+
+     * a4o_delivery_colissimo
+     * a4o_delivery_mydelivengo
+     * a4o_delivery_chronopost
+
+This includes:
+
+     * Support for customs information for Colissimo and Delivengo delivery
+       methods.
+     * The management of the availability periods of our delivery methods.
 
 ## Installing
 
