@@ -3,7 +3,7 @@
 # contains the full copyright notices and license terms.
 from odoo import api, models, fields
 from odoo.addons.resource.models.resource import float_to_time
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -17,6 +17,7 @@ WEEKDAY = [
     ('6', 'Saturday'),
     ('7', 'Sunday'),
 ]
+
 
 class DeliveryCarrier(models.Model):
     _inherit = 'delivery.carrier'
@@ -57,17 +58,34 @@ class DeliveryCarrier(models.Model):
                 self, '%s_get_sending_package_status' % delivery_type, None)
             if method:
                 method()
-    
+
     def available_carriers(self, partner):
         carrier_ids = super().available_carriers(partner)
         to_check = carrier_ids.filtered(
             lambda c: c.availability_day == 'interval')
         for carrier in to_check:
             now = datetime.now()
-            weekday = now.isoweekday()
-            time = now.time().replace(microsecond=0)
-            if ((int(carrier.from_day) <= weekday <= int(carrier.from_day)) 
-                    and (float_to_time(carrier.from_time) <= time
-                        <= float_to_time(carrier.to_time))):
+            from_date = self.day_time_to_datetime(carrier.from_day,
+                carrier.from_time)
+            to_date = self.day_time_to_datetime(carrier.to_day,
+                carrier.to_time)
+            if not (from_date <= now <= to_date):
                 carrier_ids -= carrier
         return carrier_ids
+
+    def day_time_to_datetime(self, day, time):
+        """
+        @param day: Day of the week (Monday="1", Tuesday="2", ...)
+        @param time: The scheduled time in float
+        @return: A datetime, is the date of the next day of the week chosen
+                from today, with the scheduled time.
+        """
+        day_ = int(day)
+        hour = float_to_time(time).hour
+        minute = float_to_time(time).minute
+        today = datetime.today()
+        weekday = today.isoweekday()
+        result = today + timedelta(days=day_ - weekday,
+            hours=hour - today.time().hour,
+            minutes=minute - today.time().minute)
+        return result
