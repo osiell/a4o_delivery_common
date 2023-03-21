@@ -75,17 +75,16 @@ class DeliveryCarrier(models.Model):
 
     def day_time_to_datetime(self, day, time):
         """
-        @param day: Day of the week (Monday="1", Tuesday="2", ...)
+        @param day: Day of the week (isoweekday)
         @param time: The scheduled time in float
         @return: A datetime, is the date of the next day of the week chosen
                 from today, with the scheduled time.
         """
-        day_ = int(day)
         hour = float_to_time(time).hour
         minute = float_to_time(time).minute
         today = datetime.today()
         weekday = today.isoweekday()
-        result = today + timedelta(days=day_ - weekday,
+        result = today + timedelta(days=int(day) - weekday,
             hours=hour - today.time().hour,
             minutes=minute - today.time().minute)
         return result
